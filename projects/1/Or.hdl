@@ -5,11 +5,19 @@
 /**
  * Or gate:
  * if (a or b) out = 1, else out = 0 
+ * With And, Not
+ * 0 0 1 -> 11 0
+ * 0 1 1 -> 10 1
+ * 1 0 1 -> 01 1
+ * 1 1 0 -> 00 1
+ * Nand는 (11일떄만 1 else 0) 이니까 어떻게보면 Or 과 유사 (00 -> 0 else 1)
  */
 CHIP Or {
     IN a, b;
     OUT out;
 
     PARTS:
-    //// Replace this comment with your code.
+    Not(in=a, out=nota);
+    Not(in=b, out=notb);
+    Nand(a=nota, b=notb, out=out);
 }
